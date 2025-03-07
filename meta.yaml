@@ -1,0 +1,47 @@
+package:
+  name: tensorflow
+  version: "master"  # Update to the desired version
+
+source:
+  git_url: https://github.com/tensorflow/tensorflow.git
+  git_rev: "master"  # Specify the commit, branch, or tag
+
+build:
+  number: 0
+  source:
+  - path: .
+  #script: |
+  #  echo "Current working directory: $(pwd)"
+  #  ./build_tensorflow.sh
+  script_env: 
+   - BAZEL_VERSION=8.1.1
+   - TF_NEED_CUDA=0
+
+requirements:
+  build:
+    - python
+    - pip
+    - git
+    - git-lfs
+    - setuptools
+    - numpy
+    - protobuf
+    - libprotobuf
+    - unzip 
+    - wget
+    - patch
+  host:
+    - python
+    - pip
+    - numpy
+  run:
+    - python
+
+
+about:
+  home: https://www.tensorflow.org/
+  license: Apache-2.0
+  summary: "TensorFlow is an open-source machine learning library."
+extra:
+  recipe-maintainers:
+    - pgawro
